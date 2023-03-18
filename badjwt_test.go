@@ -35,13 +35,13 @@ func TestVerify(t *testing.T) {
 }
 
 func FuzzVerifyWithWrongKey(f *testing.F) {
-	f.Fuzz(func(t *testing.T, j, k1, k2 []byte) {
+	f.Fuzz(func(t *testing.T, claims, k1, k2 []byte) {
 		if bytes.Equal(k1, k2) {
 			t.Skip()
 		}
 
 		var p Payload
-		if err := json.Unmarshal(j, &p); err != nil {
+		if err := json.Unmarshal(claims, &p); err != nil {
 			t.Skip()
 		}
 
