@@ -45,12 +45,12 @@ func FuzzVerifyWithWrongKey(f *testing.F) {
 			t.Skip()
 		}
 
-		t1, err := Sign(p, k1)
+		token, err := Sign(p, k1)
 		if err != nil {
 			t.Skip()
 		}
 
-		_, err = Verify(t1, k2)
+		_, err = Verify(token, k2)
 		if err == nil {
 			t.Errorf("token signed with k1 verifies with k2 != k1")
 		}
